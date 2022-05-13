@@ -1,0 +1,19 @@
+.toggle .slider {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: white;
+  width: 40px;
+  height: 20px;
+}
+.toggle.slider.user {
+  justify-content: flex-end;
+}
+.toggle .circle {
+  border: 1px solid black;
+  border-radius: 200px;
+  background: white;
+  width: 19px;
+  height: 19px;
+}
