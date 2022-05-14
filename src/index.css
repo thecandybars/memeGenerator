@@ -15,12 +15,16 @@ body {
 .header {
   /* padding: 10px; */
   /* background: linear-gradient(180deg, #1a1f6d 50%, #2350c1 100%); */
+  color: #f1f1f1;
+  text-align: center;
 }
 
-.header > .title {
-  color: white;
+.header .title {
   font-size: 2em;
-  text-align: center;
+  font-weight: bolder;
+}
+.header .icon {
+  font-size: 3em;
 }
 
 main {
@@ -34,39 +38,49 @@ main {
 }
 
 .colLeft {
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
   padding: 30px 20px;
 }
 .colRight {
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
   padding: 30px 20px;
 }
 
 .textRow {
+  color: #f1f1f1;
   display: grid;
   grid-template: 40px / 60% auto 30%;
   gap: 15px;
   padding: 10px 0;
 }
+.textRow .controls {
+  display: grid;
+  grid-template: auto auto/auto auto;
+}
+.textRow .controls input {
+  width: 100px;
+}
 .nav {
-  margin: 20px 0;
-  padding: 0;
+  margin-bottom: 20px;
   display: flex;
+  justify-content: center;
 }
 .form--input {
-  text-indent: 5px;
-  border-radius: 10px;
+  font-size: 1em;
+  text-indent: 15px;
+  border-radius: 20px;
   /* border: 1px solid #cacaca; */
   background: #f1f1f1;
 }
 .form--button {
-  /* grid-column: 1 / 3; */
-  color: white;
-  width: 100%;
+  color: #f1f1f1;
+  padding: 0 20px;
+  width: 40px;
   height: 40px;
-  border-radius: 20px;
-  background: transparent;
-  border: 3px solid #7b394d;
+  cursor: pointer;
+}
+.random {
+  align-self: stretch;
 }
 
 .textSize {
@@ -89,6 +103,8 @@ main {
 
 .select {
   width: 300px;
+  text-indent: 10px;
+  border-radius: 18px;
 }
 
 .meme {
@@ -130,7 +146,12 @@ main {
 }
 
 .download {
-  margin-top: 0px;
+  margin: 20px 30%;
+  display: flex;
+  flex-direction: column;
+  color: #f1f1f1;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
 .adjust {

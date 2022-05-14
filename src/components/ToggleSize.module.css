@@ -1,19 +1,48 @@
-.toggle .slider {
+.toggle {
+  display: grid;
+  grid-template: 40px / 60% auto 30%;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.label {
+  color: #f1f1f1;
+  font-size: 1.6em;
+  margin: 0 80%;
+}
+
+.sizeControls {
   display: flex;
   align-items: center;
-  border: 1px solid black;
-  border-radius: 20px;
-  background: white;
-  width: 40px;
-  height: 20px;
 }
-.toggle.slider.user {
+
+.slider {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(161, 161, 161);
+  border-radius: 10px;
+  background: white;
+  width: 30px;
+  height: 9px;
+  justify-content: flex-start;
+  padding: 0;
+}
+.user {
   justify-content: flex-end;
 }
-.toggle .circle {
-  border: 1px solid black;
+.auto {
+  color: #f1f1f1;
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-right: 5px;
+}
+.circle {
   border-radius: 200px;
-  background: white;
-  width: 19px;
-  height: 19px;
+  background: rgb(43, 110, 255);
+  width: 15px;
+  height: 15px;
+}
+.number {
+  width: 40px;
+  margin-left: 5px;
 }

@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  HiOutlineSwitchHorizontal,
+  HiOutlineSwitchVertical,
+} from "react-icons/hi";
 
 export default function InputText({
   name,
@@ -8,17 +12,22 @@ export default function InputText({
   handleDefault,
   handleSize,
 }) {
+  const placeholder = `${name[0].toUpperCase()}${name.substring(
+    1,
+    name.length
+  )} text`;
   return (
     <div className="textRow">
       <input
         type="text"
-        placeholder={`${name} text`}
+        placeholder={placeholder}
         className="form--input"
         name={`${name}Text`}
         value={meme[`${name}Text`]}
         onChange={handleTextChange}
       />
-      <div>
+      <div className="controls">
+        <HiOutlineSwitchVertical />
         <input
           type="range"
           placeholder="0"
@@ -30,7 +39,7 @@ export default function InputText({
           min={0}
           max={100}
         />
-
+        <HiOutlineSwitchHorizontal />
         <input
           type="range"
           placeholder="0"

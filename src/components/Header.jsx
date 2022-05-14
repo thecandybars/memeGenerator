@@ -1,10 +1,11 @@
 import React from "react";
-import { Flex, Spacer, Image, Text } from "@chakra-ui/react";
+import { GiFactory } from "react-icons/gi";
 
 export default function Header() {
   return (
     <header className="header">
-      <div className="title">MEME GENERATOR</div>
+      <GiFactory className="icon" />
+      <div className="title">MEME FACTORY</div>
     </header>
   );
 }

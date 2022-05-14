@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
 import InputText from "./InputText";
 import RenderText from "./RenderText";
+import { FaArrowCircleLeft } from "react-icons/fa";
+import { FaArrowCircleRight } from "react-icons/fa";
+import { FaRandom } from "react-icons/fa";
+import { MdDownloadForOffline } from "react-icons/md";
 import ToggleSize from "./ToggleSize";
 
 export default function Meme() {
@@ -27,7 +31,6 @@ export default function Meme() {
   });
   console.log("🚀 ~ file: Meme.jsx ~ line 9 ~ Meme ~ meme", meme);
   const [allMemes, setAllMemes] = useState([]);
-  // console.log("🚀 ~ file: Meme.jsx ~ line 27 ~ Meme ~ allMemes", allMemes);
 
   const memeContainer = useRef();
 
@@ -101,9 +104,9 @@ export default function Meme() {
     }
   }
 
-  function nextImage(e) {
-    const { name } = e.target;
-    name === "izquierda"
+  function gotoImage(e) {
+    const { id } = e.target;
+    id === "izquierda"
       ? setMeme((prevMeme) => ({
           ...prevMeme,
           imageIndex:
@@ -125,6 +128,26 @@ export default function Meme() {
     setMeme((prevMeme) => ({
       ...prevMeme,
       [name]: valueAsNumber,
+    }));
+  }
+
+  function toggleSize(e) {
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      autoTextSize: !prevMeme.autoTextSize,
+    }));
+    if (meme.autoTextSize) {
+      autoSizeText("top");
+      autoSizeText("center");
+      autoSizeText("bottom");
+    }
+  }
+
+  function handleUserTextSize(e) {
+    const { value } = e.target;
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      userTextSize: `${value}em`,
     }));
   }
 
@@ -196,53 +219,25 @@ export default function Meme() {
           handleDefault={handleDefault}
         />
         {/* ****** TEXT SIZE */}
-        <div className="textSize">
-          <p>Text size</p>
-          <div className="options">
-            <div className="auto">
-              <p>Auto</p>
-              <input
-                type="checkbox"
-                onChange={handleSize}
-                checked={meme.autoTextSize}
-              />
-            </div>
-            <div className="user">
-              <p>User</p>
-              <input
-                type="number"
-                onChange={handleSize}
-                disabled={meme.autoTextSize}
-                step={0.1}
-                value={parseFloat(
-                  meme.userTextSize.substring(0, meme.userTextSize.indexOf("e"))
-                )}
-              />
-            </div>
-          </div>
-        </div>
+        <ToggleSize
+          meme={meme}
+          toggleSize={toggleSize}
+          handleUserTextSize={handleUserTextSize}
+        />
         {/* ******** DOWNLOAD BUTTON  */}
-        <button
-          onClick={downloadMeme}
-          className="form--button download"
-          title="Descarga!!!"
-        >
+        <div className="download" onClick={downloadMeme}>
+          <MdDownloadForOffline className="form--button" title="Descarga!!!" />
           Download
-        </button>
+        </div>
       </div>
       {/* ****** COL RIGHT */}
       <div className="colRight">
         <nav className="nav">
-          <button
-            onClick={nextImage}
-            name="izquierda"
+          <FaArrowCircleLeft
+            onClick={gotoImage}
+            id="izquierda"
             className="form--button "
-          >
-            izq
-          </button>
-          <button onClick={nextImage} name="derecha" className="form--button">
-            der
-          </button>
+          />
           <select onChange={handleSelect} className="select">
             {allMemes.length &&
               allMemes.map((thisMeme) => (
@@ -255,9 +250,12 @@ export default function Meme() {
                 </option>
               ))}
           </select>
-          <button onClick={randomImageURL} className="form--button random">
-            ???
-          </button>
+          <FaArrowCircleRight
+            onClick={gotoImage}
+            id="derecha"
+            className="form--button "
+          />
+          <FaRandom onClick={randomImageURL} className="form--button random" />
         </nav>
         {/* ******** IMAGE  */}
         <div ref={memeContainer} className="meme">
