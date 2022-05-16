@@ -29,7 +29,7 @@ export default function Meme() {
     autoTextSize: true,
     userTextSize: TEXT_SIZE_DEFAULT,
   });
-  console.log("🚀 ~ file: Meme.jsx ~ line 9 ~ Meme ~ meme", meme);
+  // console.log("🚀 ~ file: Meme.jsx ~ line 9 ~ Meme ~ meme", meme);
   const [allMemes, setAllMemes] = useState([]);
 
   const memeContainer = useRef();
@@ -50,7 +50,7 @@ export default function Meme() {
   }, []);
 
   useEffect(() => {
-    allMemes.length && randomImageURL();
+    // allMemes.length && randomImageURL();
   }, [allMemes]);
 
   function downloadMeme(e) {
@@ -105,6 +105,7 @@ export default function Meme() {
   }
 
   function gotoImage(e) {
+    console.log("🚀 ~ file: Meme.jsx ~ line 108 ~ gotoImage ~ e", e);
     const { id } = e.target;
     id === "izquierda"
       ? setMeme((prevMeme) => ({
