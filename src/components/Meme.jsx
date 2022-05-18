@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import useFetch from "react-fetch-hook";
 import html2canvas from "html2canvas";
 import InputText from "./InputText";
 import RenderText from "./RenderText";
@@ -41,6 +42,7 @@ export default function Meme() {
       imageIndex: randomImageIndex,
     }));
   }
+  // const { data } = useFetch("https://api.imgflip.com/get_memes");
   useEffect(() => {
     fetch("https://api.imgflip.com/get_memes")
       .then((res) => res.json())
@@ -50,7 +52,7 @@ export default function Meme() {
   }, []);
 
   useEffect(() => {
-    // allMemes.length && randomImageURL();
+    allMemes.length && randomImageURL();
   }, [allMemes]);
 
   function downloadMeme(e) {
@@ -62,11 +64,23 @@ export default function Meme() {
       width,
       height,
     }).then((canvas) => {
-      const image = canvas
-        .toDataURL("image/png")
-        .replace("image/png", "image/octet-stream");
-      window.location.href = image;
+      const link = document.createElement("a");
+      document.body.appendChild(link);
+      link.download = "memeFactory.png";
+      link.href = canvas.toDataURL("image/png");
+      link.target = "_blank";
+      link.click();
     });
+    // html2canvas(divMeme, {
+    //   useCORS: true,
+    //   width,
+    //   height,
+    // }).then((canvas) => {
+    //   const image = canvas
+    //     .toDataURL("image.png")
+    //     .replace("image/png", "image/octet-stream");
+    //   window.location.href = image;
+    // });
   }
 
   function handleTextChange(e) {
